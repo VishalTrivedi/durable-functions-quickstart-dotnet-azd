@@ -84,6 +84,16 @@ The Functions runtime requires a storage component. The line `"AzureWebJobsStora
 
 1. From your HTTP test tool in a new terminal (or from your browser), call the HTTP trigger endpoint: <http://localhost:7071/api/FetchOrchestration_HttpStart> to start a new orchestration instance. This orchestration then fans out to several activities to fetch the titles of Microsoft Learn articles in parallel. When the activities finish, the orchestration fans back in and returns the titles as a formatted string. 
 
+    The HTTP endpoint should return several URLs (showing a few below for brevity). The `statusQueryGetUri` provides the orchestration status. 
+    ```json
+    {
+        "id": "9addc67238604701a38d1470874a5f04",
+        "statusQueryGetUri": "http://localhost:7071/runtime/webhooks/durabletask/instances/9addc67238604701a38d1470874a5f04?taskHub=TestHubName&connection=Storage&code=<code>",
+        "sendEventPostUri": "http://localhost:7071/runtime/webhooks/durabletask/instances/9addc67238604701a38d1470874a5f04/raiseEvent/{eventName}?taskHub=TestHubName&connection=Storage&code=<code>",
+        "terminatePostUri": "http://localhost:7071/runtime/webhooks/durabletask/instances/9addc67238604701a38d1470874a5f04/terminate?reason={text}&taskHub=TestHubName&connection=Storage&code<code>",
+    }
+    ```
+
 1. When you're done, press Ctrl+C in the terminal window to stop the `func.exe` host process.
 
 ## Run your app using Visual Studio Code
@@ -92,12 +102,14 @@ The Functions runtime requires a storage component. The line `"AzureWebJobsStora
 1. Run the `code .` code command to open the project in Visual Studio Code.
 1. Press **Run/Debug (F5)** to run in the debugger. Select **Debug anyway** if prompted about local emulator not running.
 1. From your HTTP test tool in a new terminal (or from your browser), call the HTTP trigger endpoint: <http://localhost:7071/api/FetchOrchestration_HttpStart> to start a new orchestration instance.
+1. The HTTP endpoint should return several URLs. The `statusQueryGetUri` provides the orchestration status. 
 
 ## Run your app using Visual Studio
 
 1. Open the `fanoutfanin.sln` solution file in Visual Studio.
 1. Press **Run/F5** to run in the debugger. Make a note of the `localhost` URL endpoints, including the port, which might not be `7071`.
 1. From your HTTP test tool in a new terminal (or from your browser), call the HTTP trigger endpoint: <http://localhost:7071/api/FetchOrchestration_HttpStart> to start a new orchestration instance.
+1. The HTTP endpoint should return several URLs. The `statusQueryGetUri` provides the orchestration status. 
 
 > ![NOTE] 
 > If you run the app locally after running `azd up`, you may get `There was an error parsing the Connection String: Input contains invalid delimiters and cannot be parsed.` related to App Insights. Check for user secrets by running `dotnet user-secrets list`. If the list is populated, clear them by using `dotnet user-secrets clear` before running the app again. These secrets are auto populated by `azd up` during app deployment. 
@@ -164,7 +176,19 @@ You're prompted to supply these required deployment parameters:
 | _Azure subscription_ | Subscription in which your resources are created.|
 | _Azure location_ | Azure region in which to create the resource group that contains the new Azure resources. Only regions that currently support the Flex Consumption plan are shown.|
 
-After publish completes successfully, `azd` provides you with the URL endpoints of your new functions, but without the function key values required to access the endpoints. To learn how to obtain these same endpoints along with the required function keys, see [Invoke the function on Azure](https://learn.microsoft.com/azure/azure-functions/create-first-function-azure-developer-cli?pivots=programming-language-dotnet#invoke-the-function-on-azure).
+## Test deployed app
+
+Once deployment is done, test the Durable Functions app by making an HTTP request to trigger the start of an orchestration. To get the endpoint quickly, run the following: 
+
+    ```shell
+    az functionapp function list --resource-group <resource-group-name> --name <function-app-name> --query "[].{name:name, url:invokeUrlTemplate}" --output table
+    ```
+
+The _function-app-name/http_start_ is the endpoint, and it should look like:
+ 
+ ```
+ https://<function-app-name>.azurewebsites.net/api/fetchorchestration_httpstart
+ ```
 
 ## Redeploy your code
 
