@@ -7,6 +7,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+
 <ItemGroup>
   <FrameworkReference Include="Microsoft.AspNetCore.App" />
 
@@ -17,14 +18,11 @@
   <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http" Version="3.3.0" />
   <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http.AspNetCore" Version="2.0.2" />
 
-  <!-- Keep ONE DurableTask worker extension -->
-  <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.DurableTask" Version="1.6.0" />
+  <!-- Durable (upgrade this) -->
+  <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.DurableTask" Version="1.13.1" />
 
   <!-- DTS / Azure Managed backend -->
   <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.DurableTask.AzureManaged" Version="0.4.4-alpha" />
-
-  <!-- Force DurableTask to 3.4.1+ to avoid NU1605 downgrade -->
-  <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.DurableTask" Version="3.4.1" />
 
   <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="2.0.5" />
 </ItemGroup>
