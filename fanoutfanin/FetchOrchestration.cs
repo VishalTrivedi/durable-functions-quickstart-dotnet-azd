@@ -65,6 +65,16 @@ namespace Company.Function
         public static async Task<string> FetchTitleAsync([ActivityTrigger] string url, FunctionContext executionContext)
         {
             ILogger logger = executionContext.GetLogger("FetchTitleAsync");
+            
+            // Demo-friendly: random delay so the dashboard stays “alive”
+            int minSeconds = int.TryParse(Environment.GetEnvironmentVariable("DEMO_MIN_DELAY_SECONDS"), out var min) ? min : 20;
+            int maxSeconds = int.TryParse(Environment.GetEnvironmentVariable("DEMO_MAX_DELAY_SECONDS"), out var max) ? max : 60;
+        
+            int delaySeconds = Random.Shared.Next(minSeconds, maxSeconds + 1);
+            logger.LogInformation("Delaying {DelaySeconds}s before fetching: {Url}", delaySeconds, url);
+        
+            await Task.Delay(TimeSpan.FromSeconds(delaySeconds));
+
             logger.LogInformation("Fetching from url {url}.", url);
 
             HttpClient client = new HttpClient();
@@ -110,4 +120,5 @@ namespace Company.Function
         }
     }
 }
+
 
