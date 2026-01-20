@@ -17,6 +17,10 @@
         "connectionStringName": "DURABLE_TASK_SCHEDULER_CONNECTION_STRING"
       }
     },
+   "extensionBundle": {
+     "id": "Microsoft.Azure.Functions.ExtensionBundle.Preview",
+      "version": "[4.29.0, 5.0.0)"
+    }
     "tracing": {
          "distributedTracingEnabled": true,
          "version": "None"
