@@ -47,7 +47,7 @@ namespace Company.Function
                 "https://learn.microsoft.com/azure/azure-functions/functions-create-ai-enabled-apps",
             };
 
-            const int maxParallelism = 2; // 👈 throttle
+            const int maxParallelism = 3; // 👈 throttle
             var results = new List<string>();
         
             for (int i = 0; i < urls.Count; i += maxParallelism)
@@ -141,6 +141,7 @@ namespace Company.Function
         }
     }
 }
+
 
 
 
