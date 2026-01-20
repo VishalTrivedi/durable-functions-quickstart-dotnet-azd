@@ -11,10 +11,13 @@
   },
   "extensions": {
     "durableTask": {
+      "hubName": "VT-Az-DTS-TaskHub",
       "storageProvider": {
-        "type": "AzureStorage"
-      },
-      "tracing": {
+        "type": "azureManaged",
+        "connectionStringName": "DURABLE_TASK_SCHEDULER_CONNECTION_STRING"
+      }
+    },
+    "tracing": {
          "distributedTracingEnabled": true,
          "version": "None"
        }
