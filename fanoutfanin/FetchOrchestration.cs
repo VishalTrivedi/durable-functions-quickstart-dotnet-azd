@@ -47,6 +47,26 @@ namespace Company.Function
                 "https://learn.microsoft.com/azure/azure-functions/functions-create-ai-enabled-apps",
             };
 
+            const int maxParallelism = 2; // 👈 throttle
+            var results = new List<string>();
+        
+            for (int i = 0; i < urls.Count; i += maxParallelism)
+            {
+                var batch = urls
+                    .Skip(i)
+                    .Take(maxParallelism)
+                    .Select(url => context.CallActivityAsync<string>(nameof(FetchTitleAsync), url))
+                    .ToList();
+        
+                // Wait for only this batch
+                await Task.WhenAll(batch);
+        
+                results.AddRange(batch.Select(t => t.Result));
+            }
+        
+            return string.Join(", ", results);
+                    
+/*
             // Run fetching tasks in parallel
             foreach (var url in urls)
             {
@@ -59,6 +79,7 @@ namespace Company.Function
            
             // Return fetched titles as a formatted string
             return string.Join("; ", parallelTasks.Select(t => t.Result));
+*/            
         }
 
         [Function(nameof(FetchTitleAsync))]
@@ -120,5 +141,6 @@ namespace Company.Function
         }
     }
 }
+
 
 
