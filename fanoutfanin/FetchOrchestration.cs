@@ -20,6 +20,27 @@ namespace Company.Function
             // List of URLs to fetch titles from
             var urls = new List<string>
             {
+                "https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-task-scheduler/quickstart-durable-task-scheduler?pivots=csharp",
+                "https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-isolated-create-first-csharp?pivots=code-editor-vscode",
+                "https://learn.microsoft.com/en-us/azure/azure-functions/durable/quickstart-js-vscode?pivots=nodejs-model-v4",
+                "https://learn.microsoft.com/en-us/azure/azure-functions/durable/quickstart-python-vscode?tabs=windows",
+                "https://learn.microsoft.com/en-us/azure/azure-functions/durable/quickstart-powershell-vscode",
+                "https://learn.microsoft.com/en-us/samples/browse/?term=durable%20functions&terms=durable%20functions",
+                "https://learn.microsoft.com/en-us/samples/azure-samples/durable-functions-order-processing/durable-func-order-processing/",
+                "https://learn.microsoft.com/en-us/samples/azure-samples/durable-functions-order-processing-python/durable-func-order-processing-py/",
+                "https://learn.microsoft.com/en-us/samples/azure-samples/durablefunctions-apiscraping-dotnet/retrieve-opened-issue-count-on-github-with-azure-durable-functions/",
+                "https://learn.microsoft.com/en-us/samples/azure/ai-document-processing-pipeline/azure-ai-document-processing-pipeline-python/",
+                "https://learn.microsoft.com/en-us/samples/azure-samples/durablefunctions-apiscraping-nodejs/retrieve-opened-issue-count-on-github-with-azure-durable-functions/",
+                "https://learn.microsoft.com/en-us/samples/azure-samples/durable-functions-quickstart-dotnet-azd/starter-durable-fan-out-fan-in-csharp/",
+                "https://learn.microsoft.com/en-us/samples/azure-samples/indexadillo/template/",
+                "https://learn.microsoft.com/en-us/samples/azure-samples/intelligent-pdf-summarizer-dotnet/durable-func-pdf-summarizer-csharp/",
+                "https://learn.microsoft.com/en-us/samples/azure-samples/intelligent-pdf-summarizer/durable-func-pdf-summarizer/",
+                "https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-types-features-overview",
+                "https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-orchestrations?tabs=csharp-inproc",
+                "https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-code-constraints?tabs=csharp",
+                "https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-sub-orchestrations?tabs=csharp-inproc",
+                "https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-custom-orchestration-status?tabs=csharp",
+                "https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-timers?tabs=csharp",                
                 "https://learn.microsoft.com/azure/azure-functions/durable/durable-functions-overview",
                 "https://learn.microsoft.com/azure/azure-functions/durable/durable-task-scheduler/durable-task-scheduler",
                 "https://learn.microsoft.com/azure/azure-functions/functions-scenarios",
@@ -89,3 +110,4 @@ namespace Company.Function
         }
     }
 }
+
