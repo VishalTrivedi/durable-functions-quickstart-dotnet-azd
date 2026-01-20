@@ -15,7 +15,7 @@
   },
   "extensions": {
     "durableTask": {
-      "hubName": "VT-Az-DTS-TaskHub",
+      "hubName": "%TASKHUB_NAME%",
       "storageProvider": {
         "type": "azureManaged",
         "connectionStringName": "DURABLE_TASK_SCHEDULER_CONNECTION_STRING"
